@@ -1,0 +1,15 @@
+C:\Users\sithu\Desktop\IST STAGE 2\Stage 2 - Minesweeper\obj\Debug\Stage 2 - Minesweeper.vbprojAssemblyReference.cache
+C:\Users\sithu\Desktop\IST STAGE 2\Stage 2 - Minesweeper\obj\Debug\Stage_2___Minesweeper.frmGame.resources
+C:\Users\sithu\Desktop\IST STAGE 2\Stage 2 - Minesweeper\obj\Debug\Stage_2___Minesweeper.frmHighscores.resources
+C:\Users\sithu\Desktop\IST STAGE 2\Stage 2 - Minesweeper\obj\Debug\Stage_2___Minesweeper.frmInstructions.resources
+C:\Users\sithu\Desktop\IST STAGE 2\Stage 2 - Minesweeper\obj\Debug\Stage_2___Minesweeper.frmMainMenu.resources
+C:\Users\sithu\Desktop\IST STAGE 2\Stage 2 - Minesweeper\obj\Debug\Stage_2___Minesweeper.Resources.resources
+C:\Users\sithu\Desktop\IST STAGE 2\Stage 2 - Minesweeper\obj\Debug\Stage 2 - Minesweeper.vbproj.GenerateResource.cache
+C:\Users\sithu\Desktop\IST STAGE 2\Stage 2 - Minesweeper\obj\Debug\Stage 2 - Minesweeper.vbproj.CoreCompileInputs.cache
+C:\Users\sithu\Desktop\IST STAGE 2\Stage 2 - Minesweeper\bin\Debug\Stage 2 - Minesweeper.exe.config
+C:\Users\sithu\Desktop\IST STAGE 2\Stage 2 - Minesweeper\bin\Debug\Stage 2 - Minesweeper.exe
+C:\Users\sithu\Desktop\IST STAGE 2\Stage 2 - Minesweeper\bin\Debug\Stage 2 - Minesweeper.pdb
+C:\Users\sithu\Desktop\IST STAGE 2\Stage 2 - Minesweeper\bin\Debug\Stage 2 - Minesweeper.xml
+C:\Users\sithu\Desktop\IST STAGE 2\Stage 2 - Minesweeper\obj\Debug\Stage 2 - Minesweeper.exe
+C:\Users\sithu\Desktop\IST STAGE 2\Stage 2 - Minesweeper\obj\Debug\Stage 2 - Minesweeper.xml
+C:\Users\sithu\Desktop\IST STAGE 2\Stage 2 - Minesweeper\obj\Debug\Stage 2 - Minesweeper.pdb
