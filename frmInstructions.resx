@@ -117,4 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="MenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="lblInstructionsText.Text" xml:space="preserve">
+    <value>There is a board of squares. You are to click on the squares and uncover all of them
+Under some of these squares there are mines while under others there are numbers
+The number that the square has tells you how many mines are adjacent to it
+The higher the number, the more mines
+The top right value is how much time you have spent 
+The top left value is your score
+If you click on a square that has a mine, you lose the game
+If you click on all the squares that do not have a mine, you win the game
+</value>
+  </data>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>83</value>
+  </metadata>
 </root>

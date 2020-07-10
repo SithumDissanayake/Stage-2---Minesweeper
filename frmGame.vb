@@ -1,19 +1,30 @@
 ﻿Public Class frmGame
     'All variable names: playerName, difficulty
+    'https://www.1001fonts.com/crashed-scoreboard-font.html
+    Dim playerScore As Integer
+    Dim playerTimer As Integer
+    Dim totalFreeSquares As Integer
+    Dim userClickedSquares As Integer
     Private Sub frmGame_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim playerName As String = "disum"
 
         Dim gameGrid(0, 0) As Integer
 
-        Dim difficulty As Integer = 2
         Dim totalMines As Integer
         Dim gridYLength As Integer
         Dim gridXLength As Integer
 
-        'textbox for playername
-        totalMines = difficultySetMines(difficulty)
-        gridXLength = difficultySelectX(difficulty)
-        gridYLength = difficultySelectY(difficulty)
+        timPlayer.Start()
+
+        lblPlayerName.Text = frmMainMenu.playerName
+        lblPlayerName.Left = (pnlGameBar.Width - lblPlayerName.Width) / 2
+
+
+        totalMines = difficultySetMines(frmMainMenu.difficulty)
+        gridXLength = difficultySelectX(frmMainMenu.difficulty)
+        gridYLength = difficultySelectY(frmMainMenu.difficulty)
+
+        totalFreeSquares = ((gridXLength + 1) * (gridYLength + 1)) - totalMines
+
         ReDim gameGrid(gridXLength, gridYLength)
 
         setGrid(gameGrid, gridXLength, gridYLength)
@@ -22,14 +33,15 @@
 
         populateSquares(gameGrid, gridXLength, gridYLength)
 
-        testButtons(gameGrid)
+        testbuttons(gameGrid, gridXLength, gridYLength)
+
 
         Dim x, y As Integer
         Dim temp As String
-        For y = 0 To 15
+        For y = 0 To gridYLength
             temp = ""
-            For x = 0 To 15
-                temp = temp & "     " & gameGrid(x, y)
+            For x = 0 To gridXLength
+                temp = temp & " " & gameGrid(x, y)
             Next x
             ListBox1.Items.Add(temp)
         Next y
@@ -151,32 +163,80 @@
         Next x
     End Function
 
-    Sub testbuttons(gamegrid(,) As Integer)
+    Sub testbuttons(gamegrid(,) As Integer, gridXLength As Integer, gridYLength As Integer)
         Dim x, y As Integer
 
-        For y = 0 To 15
-            For x = 0 To 15
+        Dim pnlGame As New Panel
+        pnlGame.Name = "pnlGame"
+
+        If gridXLength = 8 Then
+            pnlGame.Width = 219
+            pnlGame.Height = 222
+            pnlGame.Top = 90
+        ElseIf gridXLength = 15 Then
+            pnlGame.Width = 387
+            pnlGame.Height = 390
+            pnlGame.Top = 6
+        ElseIf gridXLength = 29 Then
+            pnlGame.Width = 723
+            pnlGame.Height = 390
+            pnlGame.Top = 6
+        End If
+
+        pnlGame.Left = (pnlGameArea.Width - pnlGame.Width) / 2
+        pnlGameArea.Controls.Add(pnlGame)
+        pnlGame.BringToFront()
+
+
+        For y = 0 To gridYLength
+            For x = 0 To gridXLength
                 Dim test As New Button
                 test.Name = gamegrid(x, y)
 
-                test.Height = 50
-                test.Width = 50
+                test.Height = 25
+                test.Width = 25
 
-                test.Left = test.Left + (49 * x)
-                test.Top = test.Top + (49 * y)
+                test.Left = test.Left + (24 * x)
+                test.Top = test.Top + (24 * y)
+
+                AddHandler test.Click, AddressOf Btn_Click
 
                 pnlGame.Controls.Add(test)
-                AddHandler test.Click, AddressOf Btn_Click
 
 
                 Dim test2 As New Label
                 test2.Text = gamegrid(x, y)
+                test2.Font = New Font(test2.Font, FontStyle.Bold)
+                test2.TextAlign = ContentAlignment.MiddleCenter
+                test2.BackColor = Color.LightGray
 
-                test2.Height = 50
-                test2.Width = 50
+                test2.Height = 25
+                test2.Width = 25
 
-                test2.Left = test2.Left + (49 * x)
-                test2.Top = test2.Top + (49 * y)
+                test2.Left = test2.Left + (24 * x)
+                test2.Top = test2.Top + (24 * y)
+
+                If gamegrid(x, y) = 0 Then
+                    test2.ForeColor = Color.LightGray
+                ElseIf gamegrid(x, y) = 1 Then
+                    test2.ForeColor = Color.Blue
+                ElseIf gamegrid(x, y) = 2 Then
+                    test2.ForeColor = Color.Green
+                ElseIf gamegrid(x, y) = 3 Then
+                    test2.ForeColor = Color.Red
+                ElseIf gamegrid(x, y) = 4 Then
+                    test2.ForeColor = Color.BlueViolet
+                ElseIf gamegrid(x, y) = 5 Then
+                    test2.ForeColor = Color.Maroon
+                ElseIf gamegrid(x, y) = 6 Then
+                    test2.ForeColor = Color.Cyan
+                ElseIf gamegrid(x, y) = 7 Then
+                    test2.ForeColor = Color.Black
+                ElseIf gamegrid(x, y) = 8 Then
+                    test2.ForeColor = Color.Gray
+                Else
+                    test2.Image = Image.FromFile("mine.jpg")
+                End If
 
                 pnlGame.Controls.Add(test2)
 
@@ -191,9 +251,22 @@
 
         sender.visible = False
 
-        If buttonValue = 9 Then
+        userClickedSquares = userClickedSquares + 1
+
+        If userClickedSquares = totalFreeSquares Then
+            MsgBox("gamewin")
+        ElseIf buttonValue = 9 Then
             MsgBox("gameover")
+        Else
+            playerScore = playerScore + 100
+            'https://stackoverflow.com/questions/3102808/how-can-i-get-0-in-front-of-any-number
+            lblScore.Text = playerScore.ToString().PadLeft(6, "0")
         End If
 
+    End Sub
+
+    Private Sub timPlayer_Tick(sender As Object, e As EventArgs) Handles timPlayer.Tick
+        playerTimer = playerTimer + 1
+        lblTimer.Text = playerTimer.ToString().PadLeft(6, "0")
     End Sub
 End Class
