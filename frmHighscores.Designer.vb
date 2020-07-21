@@ -28,11 +28,14 @@ Partial Class frmHighscores
         Me.GameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HomeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.lstBeginnerHighscores = New System.Windows.Forms.ListBox()
         Me.lblBeginner = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.lblIntermediate = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.lblExpert = New System.Windows.Forms.Label()
+        Me.lstIntermediateHighscores = New System.Windows.Forms.ListBox()
+        Me.lstExpertHighscores = New System.Windows.Forms.ListBox()
         Me.MenuStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -85,11 +88,21 @@ Partial Class frmHighscores
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.lstBeginnerHighscores)
         Me.Panel1.Controls.Add(Me.lblBeginner)
         Me.Panel1.Location = New System.Drawing.Point(47, 95)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(250, 286)
         Me.Panel1.TabIndex = 8
+        '
+        'lstBeginnerHighscores
+        '
+        Me.lstBeginnerHighscores.BackColor = System.Drawing.SystemColors.Menu
+        Me.lstBeginnerHighscores.FormattingEnabled = True
+        Me.lstBeginnerHighscores.Location = New System.Drawing.Point(36, 48)
+        Me.lstBeginnerHighscores.Name = "lstBeginnerHighscores"
+        Me.lstBeginnerHighscores.Size = New System.Drawing.Size(175, 225)
+        Me.lstBeginnerHighscores.TabIndex = 1
         '
         'lblBeginner
         '
@@ -105,6 +118,7 @@ Partial Class frmHighscores
         'Panel2
         '
         Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel2.Controls.Add(Me.lstIntermediateHighscores)
         Me.Panel2.Controls.Add(Me.lblIntermediate)
         Me.Panel2.Location = New System.Drawing.Point(347, 95)
         Me.Panel2.Name = "Panel2"
@@ -125,6 +139,7 @@ Partial Class frmHighscores
         'Panel3
         '
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel3.Controls.Add(Me.lstExpertHighscores)
         Me.Panel3.Controls.Add(Me.lblExpert)
         Me.Panel3.Location = New System.Drawing.Point(647, 95)
         Me.Panel3.Name = "Panel3"
@@ -141,6 +156,24 @@ Partial Class frmHighscores
         Me.lblExpert.Size = New System.Drawing.Size(74, 25)
         Me.lblExpert.TabIndex = 2
         Me.lblExpert.Text = "Expert"
+        '
+        'lstIntermediateHighscores
+        '
+        Me.lstIntermediateHighscores.BackColor = System.Drawing.SystemColors.Menu
+        Me.lstIntermediateHighscores.FormattingEnabled = True
+        Me.lstIntermediateHighscores.Location = New System.Drawing.Point(39, 48)
+        Me.lstIntermediateHighscores.Name = "lstIntermediateHighscores"
+        Me.lstIntermediateHighscores.Size = New System.Drawing.Size(175, 225)
+        Me.lstIntermediateHighscores.TabIndex = 2
+        '
+        'lstExpertHighscores
+        '
+        Me.lstExpertHighscores.BackColor = System.Drawing.SystemColors.Menu
+        Me.lstExpertHighscores.FormattingEnabled = True
+        Me.lstExpertHighscores.Location = New System.Drawing.Point(36, 48)
+        Me.lstExpertHighscores.Name = "lstExpertHighscores"
+        Me.lstExpertHighscores.Size = New System.Drawing.Size(175, 225)
+        Me.lstExpertHighscores.TabIndex = 3
         '
         'frmHighscores
         '
@@ -180,4 +213,7 @@ Partial Class frmHighscores
     Friend WithEvents lblBeginner As Label
     Friend WithEvents lblIntermediate As Label
     Friend WithEvents lblExpert As Label
+    Friend WithEvents lstBeginnerHighscores As ListBox
+    Friend WithEvents lstIntermediateHighscores As ListBox
+    Friend WithEvents lstExpertHighscores As ListBox
 End Class

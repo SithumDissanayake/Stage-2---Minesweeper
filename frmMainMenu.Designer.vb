@@ -68,7 +68,7 @@ Partial Class frmMainMenu
         'HomeToolStripMenuItem
         '
         Me.HomeToolStripMenuItem.Name = "HomeToolStripMenuItem"
-        Me.HomeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.HomeToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.HomeToolStripMenuItem.Text = "Home"
         '
         'btnHighscores

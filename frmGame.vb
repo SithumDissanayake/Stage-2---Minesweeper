@@ -1,10 +1,10 @@
 ﻿Public Class frmGame
     'All variable names: playerName, difficulty
     'https://www.1001fonts.com/crashed-scoreboard-font.html
-    Dim playerScore As Integer
     Dim playerTimer As Integer
     Dim totalFreeSquares As Integer
     Dim userClickedSquares As Integer
+
     Private Sub frmGame_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Dim gameGrid(0, 0) As Integer
@@ -13,17 +13,21 @@
         Dim gridYLength As Integer
         Dim gridXLength As Integer
 
+        userClickedSquares = 0
+        playerTimer = 0
+
         timPlayer.Start()
 
         lblPlayerName.Text = frmMainMenu.playerName
         lblPlayerName.Left = (pnlGameBar.Width - lblPlayerName.Width) / 2
-
 
         totalMines = difficultySetMines(frmMainMenu.difficulty)
         gridXLength = difficultySelectX(frmMainMenu.difficulty)
         gridYLength = difficultySelectY(frmMainMenu.difficulty)
 
         totalFreeSquares = ((gridXLength + 1) * (gridYLength + 1)) - totalMines
+
+        lblSquaresLeft.Text = totalFreeSquares.ToString().PadLeft(6, "0")
 
         ReDim gameGrid(gridXLength, gridYLength)
 
@@ -72,14 +76,17 @@
             Return 99
         End If
     End Function
-    Function setGrid(gameGrid(,) As Integer, gridXLength As Integer, gridYLength As Integer) As Integer()
+    Function setGrid(gameGrid(,) As Integer, gridXLength As Integer, gridYLength As Integer) As Integer
+
         For x = 0 To gridXLength
             For y = 0 To gridYLength
                 gameGrid(x, y) = 0
             Next y
         Next x
+
+        Return gameGrid(gridXLength, gridYLength)
     End Function
-    Function generateMines(gameGrid(,) As Integer, gridXLength As Integer, gridYLength As Integer, totalMines As Integer) As Integer()
+    Function generateMines(gameGrid(,) As Integer, gridXLength As Integer, gridYLength As Integer, totalMines As Integer) As Integer
         Dim checkMines As Integer
         Dim x As Integer
         Dim y As Integer
@@ -96,15 +103,16 @@
             End If
         End While
 
+        Return gameGrid(gridXLength, gridYLength)
     End Function
     Public Function RandBetween(Low As Integer, High As Integer) As Integer
-        'Randomize()
+        Randomize()
         RandBetween = Int((High - Low + 1) * Rnd()) + Low
     End Function
 
 
 
-    Function populateSquares(gameGrid(,) As Integer, gridXLength As Integer, gridYLength As Integer) As Integer()
+    Function populateSquares(gameGrid(,) As Integer, gridXLength As Integer, gridYLength As Integer) As Integer
         Dim x As Integer
         Dim y As Integer
         Dim yTop As Integer
@@ -161,12 +169,18 @@
                 End If
             Next y
         Next x
+
+        Return gameGrid(gridXLength, gridYLength)
     End Function
+
+
+    Dim pnlGame As New Panel
 
     Sub testbuttons(gamegrid(,) As Integer, gridXLength As Integer, gridYLength As Integer)
         Dim x, y As Integer
 
-        Dim pnlGame As New Panel
+        pnlGame.Controls.Clear()
+
         pnlGame.Name = "pnlGame"
 
         If gridXLength = 8 Then
@@ -191,13 +205,16 @@
         For y = 0 To gridYLength
             For x = 0 To gridXLength
                 Dim test As New Button
-                test.Name = gamegrid(x, y)
+                test.Name = x & y & gamegrid(x, y)
 
                 test.Height = 25
                 test.Width = 25
 
                 test.Left = test.Left + (24 * x)
                 test.Top = test.Top + (24 * y)
+
+                'https://stackoverflow.com/a/37803054
+                test.TabStop = False
 
                 AddHandler test.Click, AddressOf Btn_Click
 
@@ -245,28 +262,104 @@
     End Sub
 
     Private Sub Btn_Click(sender As Object, e As EventArgs)
-        Dim buttonValue As Integer
-
-        buttonValue = sender.name
+        Dim freeSquares As Integer
+        'MsgBox(sender.name)
 
         sender.visible = False
 
+        'https://social.technet.microsoft.com/wiki/contents/articles/53077.winforms-get-all-controls-of-a-specific-type-vb-net.aspx
+
+
+        'For Each child As Control In pnlGame.Controls
+        '    If Strings.Right(sender.name, 1) = 0 AndAlso Strings.Right(child.Name, 1) = "0" Then
+
+        '        child.Visible = False
+
+        '    End If
+        'Next child
+
+
         userClickedSquares = userClickedSquares + 1
 
+        freeSquares = totalFreeSquares - userClickedSquares
+
         If userClickedSquares = totalFreeSquares Then
+            timPlayer.Stop()
+            frmGameWin.Show()
+            writeHighscore()
             MsgBox("gamewin")
-        ElseIf buttonValue = 9 Then
+
+        ElseIf strings.right(sender.name, 1) = 9 Then
             MsgBox("gameover")
+            frmGameLose.Show()
         Else
-            playerScore = playerScore + 100
             'https://stackoverflow.com/questions/3102808/how-can-i-get-0-in-front-of-any-number
-            lblScore.Text = playerScore.ToString().PadLeft(6, "0")
+            lblSquaresLeft.Text = freeSquares.ToString().PadLeft(6, "0")
         End If
 
+    End Sub
+
+    Sub writeHighscore()
+        Dim arrRead(9) As frmHighscores.recHighscore
+
+        If frmMainMenu.difficulty = 1 Then
+            FileSystem.FileOpen(1, Application.StartupPath() & ”\beginnerHighscores.txt”, OpenMode.Input)
+            For i = 0 To 9
+                FileSystem.Input(1, arrRead(i).name)
+                FileSystem.Input(1, arrRead(i).score)
+
+            Next i
+            FileSystem.FileClose(1)
+
+            For i = 0 To 9
+                If playerTimer < arrRead(i).score Then
+                    For j = 9 To i Step -1
+                        arrRead(j).name = arrRead(j - 1).name
+                        arrRead(j).score = arrRead(j - 1).score
+                    Next j
+                    arrRead(i).name = frmMainMenu.playerName
+                    arrRead(i).score = playerTimer
+                End If
+            Next i
+
+            FileSystem.FileOpen(1, "\beginnerHighscores.txt", OpenMode.Output) '
+            For i = 0 To 9
+                FileSystem.WriteLine(1, arrRead(i))
+            Next i
+            FileSystem.FileClose(1)
+        ElseIf frmMainMenu.difficulty = 2 Then
+            FileSystem.FileOpen(1, Application.StartupPath() & ”\intermediateHighscores.txt”, OpenMode.Input)
+
+
+        ElseIf frmMainMenu.difficulty = 3 Then
+            FileSystem.FileOpen(1, Application.StartupPath() & ”\expertHighscores.txt”, OpenMode.Input)
+
+
+        End If
     End Sub
 
     Private Sub timPlayer_Tick(sender As Object, e As EventArgs) Handles timPlayer.Tick
         playerTimer = playerTimer + 1
         lblTimer.Text = playerTimer.ToString().PadLeft(6, "0")
+    End Sub
+
+    Private Sub HomeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HomeToolStripMenuItem.Click
+        Me.Hide()
+        frmMainMenu.Show()
+    End Sub
+
+    Private Sub BeginnerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BeginnerToolStripMenuItem.Click
+        frmMainMenu.difficulty = 1
+        frmGame_Load(e, e)
+    End Sub
+
+    Private Sub IntermediateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles IntermediateToolStripMenuItem.Click
+        frmMainMenu.difficulty = 2
+        frmGame_Load(e, e)
+    End Sub
+
+    Private Sub ExpertToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExpertToolStripMenuItem.Click
+        frmMainMenu.difficulty = 3
+        frmGame_Load(e, e)
     End Sub
 End Class

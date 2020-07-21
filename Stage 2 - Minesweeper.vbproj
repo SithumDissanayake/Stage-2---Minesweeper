@@ -74,6 +74,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmGameLose.Designer.vb">
+      <DependentUpon>frmGameLose.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmGameLose.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGameWin.Designer.vb">
+      <DependentUpon>frmGameWin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmGameWin.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmInstructions.Designer.vb">
       <DependentUpon>frmInstructions.vb</DependentUpon>
     </Compile>
@@ -118,6 +130,9 @@
   <ItemGroup>
     <EmbeddedResource Include="frmGame.resx">
       <DependentUpon>frmGame.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGameWin.resx">
+      <DependentUpon>frmGameWin.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmHighscores.resx">
       <DependentUpon>frmHighscores.vb</DependentUpon>

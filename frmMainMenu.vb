@@ -1,6 +1,10 @@
 ﻿Public Class frmMainMenu
     Public playerName As String
     Public difficulty As Integer
+    Private Sub HomeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HomeToolStripMenuItem.Click
+        Me.Hide()
+        Me.Show()
+    End Sub
     Private Sub txtName_TextChanged(sender As Object, e As EventArgs) Handles txtName.TextChanged
         playerName = txtName.Text
     End Sub
@@ -24,6 +28,7 @@
         Me.Hide()
         frmHighscores.Show()
     End Sub
+
     Private Sub btnStart_Click(sender As Object, e As EventArgs) Handles btnStart.Click
         Me.Hide()
         frmGame.Show()

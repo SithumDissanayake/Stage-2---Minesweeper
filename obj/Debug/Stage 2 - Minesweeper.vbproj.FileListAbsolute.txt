@@ -13,3 +13,4 @@ C:\Users\sithu\Desktop\IST STAGE 2\Stage 2 - Minesweeper\bin\Debug\Stage 2 - Min
 C:\Users\sithu\Desktop\IST STAGE 2\Stage 2 - Minesweeper\obj\Debug\Stage 2 - Minesweeper.exe
 C:\Users\sithu\Desktop\IST STAGE 2\Stage 2 - Minesweeper\obj\Debug\Stage 2 - Minesweeper.xml
 C:\Users\sithu\Desktop\IST STAGE 2\Stage 2 - Minesweeper\obj\Debug\Stage 2 - Minesweeper.pdb
+C:\Users\sithu\Desktop\IST STAGE 2\Stage 2 - Minesweeper\obj\Debug\Stage_2___Minesweeper.frmGameWin.resources
