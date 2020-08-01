@@ -111,6 +111,7 @@
       <DependentUpon>frmMainMenu.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GlobalVariables.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -130,6 +131,9 @@
   <ItemGroup>
     <EmbeddedResource Include="frmGame.resx">
       <DependentUpon>frmGame.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGameLose.resx">
+      <DependentUpon>frmGameLose.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmGameWin.resx">
       <DependentUpon>frmGameWin.vb</DependentUpon>

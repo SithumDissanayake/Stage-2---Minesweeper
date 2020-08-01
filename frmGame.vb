@@ -13,17 +13,18 @@
         Dim gridYLength As Integer
         Dim gridXLength As Integer
 
+        newHighscore = False
         userClickedSquares = 0
         playerTimer = 0
 
         timPlayer.Start()
 
-        lblPlayerName.Text = frmMainMenu.playerName
+        lblPlayerName.Text = playerName
         lblPlayerName.Left = (pnlGameBar.Width - lblPlayerName.Width) / 2
 
-        totalMines = difficultySetMines(frmMainMenu.difficulty)
-        gridXLength = difficultySelectX(frmMainMenu.difficulty)
-        gridYLength = difficultySelectY(frmMainMenu.difficulty)
+        totalMines = difficultySetMines(difficulty)
+        gridXLength = difficultySelectX(difficulty)
+        gridYLength = difficultySelectY(difficulty)
 
         totalFreeSquares = ((gridXLength + 1) * (gridYLength + 1)) - totalMines
 
@@ -52,29 +53,24 @@
     End Sub
 
     Function difficultySelectX(difficulty As Integer) As Integer
-        If difficulty = 1 Then
-            Return 8
-        ElseIf difficulty = 2 Then
-            Return 15
-        Else
-            Return 29
-        End If
+        Select Case difficulty
+            Case 1 : Return 8
+            Case 2 : Return 15
+            Case 3 : Return 29
+        End Select
     End Function
     Function difficultySelectY(difficulty As Integer) As Integer
-        If difficulty = 1 Then
-            Return 8
-        Else
-            Return 15
-        End If
+        Select Case difficulty
+            Case 1 : Return 8
+            Case 2, 3 : Return 15
+        End Select
     End Function
     Function difficultySetMines(difficulty As Integer) As Integer
-        If difficulty = 1 Then
-            Return 10
-        ElseIf difficulty = 2 Then
-            Return 40
-        Else
-            Return 99
-        End If
+        Select Case difficulty
+            Case 1 : Return 10
+            Case 2 : Return 40
+            Case 3 : Return 99
+        End Select
     End Function
     Function setGrid(gameGrid(,) As Integer, gridXLength As Integer, gridYLength As Integer) As Integer
 
@@ -106,11 +102,9 @@
         Return gameGrid(gridXLength, gridYLength)
     End Function
     Public Function RandBetween(Low As Integer, High As Integer) As Integer
-        Randomize()
+        'Randomize()
         RandBetween = Int((High - Low + 1) * Rnd()) + Low
     End Function
-
-
 
     Function populateSquares(gameGrid(,) As Integer, gridXLength As Integer, gridYLength As Integer) As Integer
         Dim x As Integer
@@ -183,79 +177,71 @@
 
         pnlGame.Name = "pnlGame"
 
-        If gridXLength = 8 Then
-            pnlGame.Width = 219
-            pnlGame.Height = 222
-            pnlGame.Top = 90
-        ElseIf gridXLength = 15 Then
-            pnlGame.Width = 387
-            pnlGame.Height = 390
-            pnlGame.Top = 6
-        ElseIf gridXLength = 29 Then
-            pnlGame.Width = 723
-            pnlGame.Height = 390
-            pnlGame.Top = 6
-        End If
+        Select Case gridXLength
+            Case 8
+                pnlGame.Width = 219
+                pnlGame.Height = 222
+                pnlGame.Top = 90
+            Case 15
+                pnlGame.Width = 387
+                pnlGame.Height = 390
+                pnlGame.Top = 6
+            Case 29
+                pnlGame.Width = 723
+                pnlGame.Height = 390
+                pnlGame.Top = 6
+        End Select
 
         pnlGame.Left = (pnlGameArea.Width - pnlGame.Width) / 2
         pnlGameArea.Controls.Add(pnlGame)
         pnlGame.BringToFront()
 
-
         For y = 0 To gridYLength
             For x = 0 To gridXLength
-                Dim test As New Button
-                test.Name = x & y & gamegrid(x, y)
+                Dim gridButton As New Button
+                gridButton.Name = x & y & gamegrid(x, y)
 
-                test.Height = 25
-                test.Width = 25
+                gridButton.Height = 25
+                gridButton.Width = 25
 
-                test.Left = test.Left + (24 * x)
-                test.Top = test.Top + (24 * y)
+                gridButton.Left = gridButton.Left + (24 * x)
+                gridButton.Top = gridButton.Top + (24 * y)
 
                 'https://stackoverflow.com/a/37803054
-                test.TabStop = False
+                gridButton.TabStop = False
 
-                AddHandler test.Click, AddressOf Btn_Click
+                AddHandler gridButton.Click, AddressOf Btn_Click
 
-                pnlGame.Controls.Add(test)
+                pnlGame.Controls.Add(gridButton)
 
 
-                Dim test2 As New Label
-                test2.Text = gamegrid(x, y)
-                test2.Font = New Font(test2.Font, FontStyle.Bold)
-                test2.TextAlign = ContentAlignment.MiddleCenter
-                test2.BackColor = Color.LightGray
 
-                test2.Height = 25
-                test2.Width = 25
+                Dim gridLabel As New Label
+                gridLabel.Text = gamegrid(x, y)
+                gridLabel.Font = New Font(gridLabel.Font, FontStyle.Bold)
+                gridLabel.TextAlign = ContentAlignment.MiddleCenter
+                gridLabel.BackColor = Color.LightGray
 
-                test2.Left = test2.Left + (24 * x)
-                test2.Top = test2.Top + (24 * y)
+                gridLabel.Height = 25
+                gridLabel.Width = 25
 
-                If gamegrid(x, y) = 0 Then
-                    test2.ForeColor = Color.LightGray
-                ElseIf gamegrid(x, y) = 1 Then
-                    test2.ForeColor = Color.Blue
-                ElseIf gamegrid(x, y) = 2 Then
-                    test2.ForeColor = Color.Green
-                ElseIf gamegrid(x, y) = 3 Then
-                    test2.ForeColor = Color.Red
-                ElseIf gamegrid(x, y) = 4 Then
-                    test2.ForeColor = Color.BlueViolet
-                ElseIf gamegrid(x, y) = 5 Then
-                    test2.ForeColor = Color.Maroon
-                ElseIf gamegrid(x, y) = 6 Then
-                    test2.ForeColor = Color.Cyan
-                ElseIf gamegrid(x, y) = 7 Then
-                    test2.ForeColor = Color.Black
-                ElseIf gamegrid(x, y) = 8 Then
-                    test2.ForeColor = Color.Gray
-                Else
-                    test2.Image = Image.FromFile("mine.jpg")
-                End If
+                gridLabel.Left = gridLabel.Left + (24 * x)
+                gridLabel.Top = gridLabel.Top + (24 * y)
 
-                pnlGame.Controls.Add(test2)
+                Select Case gamegrid(x, y)
+                    Case 0 : gridLabel.ForeColor = Color.LightGray
+                    Case 1 : gridLabel.ForeColor = Color.Blue
+                    Case 2 : gridLabel.ForeColor = Color.Green
+                    Case 3 : gridLabel.ForeColor = Color.Red
+                    Case 4 : gridLabel.ForeColor = Color.BlueViolet
+                    Case 5 : gridLabel.ForeColor = Color.Maroon
+                    Case 6 : gridLabel.ForeColor = Color.Cyan
+                    Case 7 : gridLabel.ForeColor = Color.Black
+                    Case 8 : gridLabel.ForeColor = Color.Gray
+                    Case Else : gridLabel.Image = Image.FromFile("mine.jpg")
+                End Select
+
+                pnlGame.Controls.Add(gridLabel)
 
             Next x
         Next y
@@ -285,57 +271,59 @@
 
         If userClickedSquares = totalFreeSquares Then
             timPlayer.Stop()
-            frmGameWin.Show()
+            playerScore = playerTimer
+            squaresRemaining = freeSquares
+            frmGameWin.ShowDialog()
+            newHighscore = True
             writeHighscore()
-            MsgBox("gamewin")
 
-        ElseIf strings.right(sender.name, 1) = 9 Then
-            MsgBox("gameover")
-            frmGameLose.Show()
+        ElseIf Strings.Right(sender.name, 1) = 9 Then
+            timPlayer.Stop()
+            playerScore = playerTimer
+            squaresRemaining = freeSquares
+            frmGameLose.ShowDialog()
+
         Else
             'https://stackoverflow.com/questions/3102808/how-can-i-get-0-in-front-of-any-number
             lblSquaresLeft.Text = freeSquares.ToString().PadLeft(6, "0")
+
         End If
 
     End Sub
 
     Sub writeHighscore()
-        Dim arrRead(9) As frmHighscores.recHighscore
+        Dim arrRead(10) As frmHighscores.recHighscore
+        Dim temp As frmHighscores.recHighscore
 
-        If frmMainMenu.difficulty = 1 Then
-            FileSystem.FileOpen(1, Application.StartupPath() & ”\beginnerHighscores.txt”, OpenMode.Input)
-            For i = 0 To 9
-                FileSystem.Input(1, arrRead(i).name)
-                FileSystem.Input(1, arrRead(i).score)
+        arrRead(10).name = playerName
+        arrRead(10).score = playerScore
 
-            Next i
-            FileSystem.FileClose(1)
+        FileSystem.FileOpen(1, Application.StartupPath() & ”\highscores" & difficulty & ".txt”, OpenMode.Input)
 
-            For i = 0 To 9
-                If playerTimer < arrRead(i).score Then
-                    For j = 9 To i Step -1
-                        arrRead(j).name = arrRead(j - 1).name
-                        arrRead(j).score = arrRead(j - 1).score
-                    Next j
-                    arrRead(i).name = frmMainMenu.playerName
-                    arrRead(i).score = playerTimer
-                End If
-            Next i
+        For i = 0 To 9
+            FileSystem.Input(1, arrRead(i).name)
+            FileSystem.Input(1, arrRead(i).score)
+        Next i
 
-            FileSystem.FileOpen(1, "\beginnerHighscores.txt", OpenMode.Output) '
-            For i = 0 To 9
-                FileSystem.WriteLine(1, arrRead(i))
-            Next i
-            FileSystem.FileClose(1)
-        ElseIf frmMainMenu.difficulty = 2 Then
-            FileSystem.FileOpen(1, Application.StartupPath() & ”\intermediateHighscores.txt”, OpenMode.Input)
+        FileSystem.FileClose(1)
+
+        For i = 0 To 9
+            If arrRead(i).score <= arrRead(i + 1).score Then
+                temp = arrRead(i)
+                arrRead(i) = arrRead(i + 1)
+                arrRead(i + 1) = temp
+            End If
+        Next i
 
 
-        ElseIf frmMainMenu.difficulty = 3 Then
-            FileSystem.FileOpen(1, Application.StartupPath() & ”\expertHighscores.txt”, OpenMode.Input)
+        FileSystem.FileOpen(1, Application.StartupPath() & ”\highscores" & difficulty & ".txt”, OpenMode.Output)
+        For i = 0 To 9
+            FileSystem.WriteLine(1, arrRead(i).name)
+            FileSystem.WriteLine(1, arrRead(i).score)
+        Next
 
+        FileSystem.FileClose(1)
 
-        End If
     End Sub
 
     Private Sub timPlayer_Tick(sender As Object, e As EventArgs) Handles timPlayer.Tick
@@ -349,17 +337,17 @@
     End Sub
 
     Private Sub BeginnerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BeginnerToolStripMenuItem.Click
-        frmMainMenu.difficulty = 1
+        difficulty = 1
         frmGame_Load(e, e)
     End Sub
 
     Private Sub IntermediateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles IntermediateToolStripMenuItem.Click
-        frmMainMenu.difficulty = 2
+        difficulty = 2
         frmGame_Load(e, e)
     End Sub
 
     Private Sub ExpertToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExpertToolStripMenuItem.Click
-        frmMainMenu.difficulty = 3
+        difficulty = 3
         frmGame_Load(e, e)
     End Sub
 End Class

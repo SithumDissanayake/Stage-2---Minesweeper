@@ -1,12 +1,7 @@
 ﻿Public Class frmMainMenu
-    Public playerName As String
-    Public difficulty As Integer
     Private Sub HomeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HomeToolStripMenuItem.Click
         Me.Hide()
         Me.Show()
-    End Sub
-    Private Sub txtName_TextChanged(sender As Object, e As EventArgs) Handles txtName.TextChanged
-        playerName = txtName.Text
     End Sub
     Private Sub rdoBeginner_CheckedChanged(sender As Object, e As EventArgs) Handles rdoBeginner.CheckedChanged
         difficulty = 1
@@ -30,8 +25,20 @@
     End Sub
 
     Private Sub btnStart_Click(sender As Object, e As EventArgs) Handles btnStart.Click
+
+        If txtName.Text = "" AndAlso difficulty = 0 Then
+            MsgBox("Please Enter a Valid Name and Difficulty")
+        ElseIf txtName.Text = "" Then
+            MsgBox("Please Enter a Valid Name")
+
+        ElseIf difficulty = 0 Then
+            MsgBox("Please Select a Difficulty")
+
+        Else
+            playerName = txtName.Text
+
         Me.Hide()
         frmGame.Show()
+        End If
     End Sub
-
 End Class

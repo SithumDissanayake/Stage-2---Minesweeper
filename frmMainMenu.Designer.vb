@@ -42,6 +42,7 @@ Partial Class frmMainMenu
         '
         'btnStart
         '
+        Me.btnStart.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnStart.Location = New System.Drawing.Point(409, 426)
         Me.btnStart.Name = "btnStart"
         Me.btnStart.Size = New System.Drawing.Size(138, 53)
@@ -51,9 +52,11 @@ Partial Class frmMainMenu
         '
         'MenuStrip1
         '
+        Me.MenuStrip1.ImageScalingSize = New System.Drawing.Size(36, 36)
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GameToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(3, 1, 0, 1)
         Me.MenuStrip1.Size = New System.Drawing.Size(944, 24)
         Me.MenuStrip1.TabIndex = 1
         Me.MenuStrip1.Text = "cmnuMain"
@@ -62,7 +65,7 @@ Partial Class frmMainMenu
         '
         Me.GameToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HomeToolStripMenuItem})
         Me.GameToolStripMenuItem.Name = "GameToolStripMenuItem"
-        Me.GameToolStripMenuItem.Size = New System.Drawing.Size(50, 20)
+        Me.GameToolStripMenuItem.Size = New System.Drawing.Size(50, 22)
         Me.GameToolStripMenuItem.Text = "Game"
         '
         'HomeToolStripMenuItem
