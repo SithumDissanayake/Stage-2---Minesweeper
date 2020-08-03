@@ -37,7 +37,7 @@
         Else
             playerName = txtName.Text
 
-        Me.Hide()
+            Me.Hide()
         frmGame.Show()
         End If
     End Sub

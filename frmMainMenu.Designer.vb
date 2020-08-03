@@ -179,7 +179,7 @@ Partial Class frmMainMenu
         Me.txtName.Location = New System.Drawing.Point(495, 113)
         Me.txtName.Name = "txtName"
         Me.txtName.Size = New System.Drawing.Size(132, 20)
-        Me.txtName.TabIndex = 9
+        Me.txtName.TabIndex = 0
         '
         'frmMainMenu
         '
