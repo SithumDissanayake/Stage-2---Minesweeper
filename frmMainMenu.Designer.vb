@@ -22,27 +22,28 @@ Partial Class frmMainMenu
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMainMenu))
         Me.btnStart = New System.Windows.Forms.Button()
-        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.GameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.HomeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mstMainMenu = New System.Windows.Forms.MenuStrip()
+        Me.tmiGame = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tmiHome = New System.Windows.Forms.ToolStripMenuItem()
         Me.btnHighscores = New System.Windows.Forms.Button()
         Me.btnInstructions = New System.Windows.Forms.Button()
         Me.rdoBeginner = New System.Windows.Forms.RadioButton()
-        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.pnlDifficulty = New System.Windows.Forms.Panel()
         Me.lblDifficulty = New System.Windows.Forms.Label()
         Me.rdoExpert = New System.Windows.Forms.RadioButton()
         Me.rdoIntermediate = New System.Windows.Forms.RadioButton()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.lblName = New System.Windows.Forms.Label()
         Me.txtName = New System.Windows.Forms.TextBox()
-        Me.MenuStrip1.SuspendLayout()
-        Me.Panel1.SuspendLayout()
+        Me.mstMainMenu.SuspendLayout()
+        Me.pnlDifficulty.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnStart
         '
-        Me.btnStart.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnStart.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnStart.Location = New System.Drawing.Point(409, 426)
         Me.btnStart.Name = "btnStart"
         Me.btnStart.Size = New System.Drawing.Size(138, 53)
@@ -50,32 +51,33 @@ Partial Class frmMainMenu
         Me.btnStart.Text = "Start"
         Me.btnStart.UseVisualStyleBackColor = True
         '
-        'MenuStrip1
+        'mstMainMenu
         '
-        Me.MenuStrip1.ImageScalingSize = New System.Drawing.Size(36, 36)
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GameToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(3, 1, 0, 1)
-        Me.MenuStrip1.Size = New System.Drawing.Size(944, 24)
-        Me.MenuStrip1.TabIndex = 1
-        Me.MenuStrip1.Text = "cmnuMain"
+        Me.mstMainMenu.ImageScalingSize = New System.Drawing.Size(36, 36)
+        Me.mstMainMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tmiGame})
+        Me.mstMainMenu.Location = New System.Drawing.Point(0, 0)
+        Me.mstMainMenu.Name = "mstMainMenu"
+        Me.mstMainMenu.Padding = New System.Windows.Forms.Padding(3, 1, 0, 1)
+        Me.mstMainMenu.Size = New System.Drawing.Size(944, 24)
+        Me.mstMainMenu.TabIndex = 1
+        Me.mstMainMenu.Text = "cmnuMain"
         '
-        'GameToolStripMenuItem
+        'tmiGame
         '
-        Me.GameToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HomeToolStripMenuItem})
-        Me.GameToolStripMenuItem.Name = "GameToolStripMenuItem"
-        Me.GameToolStripMenuItem.Size = New System.Drawing.Size(50, 22)
-        Me.GameToolStripMenuItem.Text = "Game"
+        Me.tmiGame.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tmiHome})
+        Me.tmiGame.Name = "tmiGame"
+        Me.tmiGame.Size = New System.Drawing.Size(50, 22)
+        Me.tmiGame.Text = "Game"
         '
-        'HomeToolStripMenuItem
+        'tmiHome
         '
-        Me.HomeToolStripMenuItem.Name = "HomeToolStripMenuItem"
-        Me.HomeToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
-        Me.HomeToolStripMenuItem.Text = "Home"
+        Me.tmiHome.Name = "tmiHome"
+        Me.tmiHome.Size = New System.Drawing.Size(107, 22)
+        Me.tmiHome.Text = "Home"
         '
         'btnHighscores
         '
+        Me.btnHighscores.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnHighscores.Location = New System.Drawing.Point(595, 416)
         Me.btnHighscores.Name = "btnHighscores"
         Me.btnHighscores.Size = New System.Drawing.Size(175, 77)
@@ -85,6 +87,7 @@ Partial Class frmMainMenu
         '
         'btnInstructions
         '
+        Me.btnInstructions.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnInstructions.Location = New System.Drawing.Point(183, 416)
         Me.btnInstructions.Name = "btnInstructions"
         Me.btnInstructions.Size = New System.Drawing.Size(175, 77)
@@ -105,17 +108,17 @@ Partial Class frmMainMenu
         Me.rdoBeginner.Text = "Beginner"
         Me.rdoBeginner.UseVisualStyleBackColor = True
         '
-        'Panel1
+        'pnlDifficulty
         '
-        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel1.Controls.Add(Me.lblDifficulty)
-        Me.Panel1.Controls.Add(Me.rdoExpert)
-        Me.Panel1.Controls.Add(Me.rdoIntermediate)
-        Me.Panel1.Controls.Add(Me.rdoBeginner)
-        Me.Panel1.Location = New System.Drawing.Point(327, 163)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(300, 235)
-        Me.Panel1.TabIndex = 6
+        Me.pnlDifficulty.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnlDifficulty.Controls.Add(Me.lblDifficulty)
+        Me.pnlDifficulty.Controls.Add(Me.rdoExpert)
+        Me.pnlDifficulty.Controls.Add(Me.rdoIntermediate)
+        Me.pnlDifficulty.Controls.Add(Me.rdoBeginner)
+        Me.pnlDifficulty.Location = New System.Drawing.Point(327, 163)
+        Me.pnlDifficulty.Name = "pnlDifficulty"
+        Me.pnlDifficulty.Size = New System.Drawing.Size(300, 235)
+        Me.pnlDifficulty.TabIndex = 6
         '
         'lblDifficulty
         '
@@ -183,41 +186,44 @@ Partial Class frmMainMenu
         '
         'frmMainMenu
         '
+        Me.AcceptButton = Me.btnStart
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(944, 501)
         Me.Controls.Add(Me.txtName)
         Me.Controls.Add(Me.lblName)
         Me.Controls.Add(Me.lblTitle)
-        Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.pnlDifficulty)
         Me.Controls.Add(Me.btnInstructions)
         Me.Controls.Add(Me.btnHighscores)
         Me.Controls.Add(Me.btnStart)
-        Me.Controls.Add(Me.MenuStrip1)
-        Me.MainMenuStrip = Me.MenuStrip1
+        Me.Controls.Add(Me.mstMainMenu)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MainMenuStrip = Me.mstMainMenu
         Me.Name = "frmMainMenu"
         Me.Text = "Minesweeper - Main Menu"
-        Me.MenuStrip1.ResumeLayout(False)
-        Me.MenuStrip1.PerformLayout()
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
+        Me.mstMainMenu.ResumeLayout(False)
+        Me.mstMainMenu.PerformLayout()
+        Me.pnlDifficulty.ResumeLayout(False)
+        Me.pnlDifficulty.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents btnStart As Button
-    Friend WithEvents MenuStrip1 As MenuStrip
-    Friend WithEvents GameToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents HomeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents mstMainMenu As MenuStrip
+    Friend WithEvents tmiGame As ToolStripMenuItem
     Friend WithEvents btnHighscores As Button
     Friend WithEvents btnInstructions As Button
     Friend WithEvents rdoBeginner As RadioButton
-    Friend WithEvents Panel1 As Panel
+    Friend WithEvents pnlDifficulty As Panel
     Friend WithEvents rdoExpert As RadioButton
     Friend WithEvents rdoIntermediate As RadioButton
     Friend WithEvents lblDifficulty As Label
     Friend WithEvents lblTitle As Label
     Friend WithEvents lblName As Label
     Friend WithEvents txtName As TextBox
+    Friend WithEvents tmiHome As ToolStripMenuItem
 End Class

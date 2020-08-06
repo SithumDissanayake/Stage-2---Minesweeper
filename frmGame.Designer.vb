@@ -23,52 +23,72 @@ Partial Class frmGame
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.GameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.HomeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DifficultyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmGame))
+        Me.mstGame = New System.Windows.Forms.MenuStrip()
+        Me.tmiGame = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tmiHome = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tmiDifficulty = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tmiBeginner = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tmiIntermediate = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tmiExpert = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlGameArea = New System.Windows.Forms.Panel()
         Me.pnlGameBar = New System.Windows.Forms.Panel()
         Me.lblPlayerName = New System.Windows.Forms.Label()
         Me.lblSquaresLeft = New System.Windows.Forms.Label()
         Me.lblTimer = New System.Windows.Forms.Label()
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.timPlayer = New System.Windows.Forms.Timer(Me.components)
-        Me.BeginnerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.IntermediateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ExpertToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MenuStrip1.SuspendLayout()
+        Me.mstGame.SuspendLayout()
         Me.pnlGameBar.SuspendLayout()
         Me.SuspendLayout()
         '
-        'MenuStrip1
+        'mstGame
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GameToolStripMenuItem, Me.DifficultyToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(944, 24)
-        Me.MenuStrip1.TabIndex = 3
-        Me.MenuStrip1.Text = "cmnuMain"
+        Me.mstGame.ImageScalingSize = New System.Drawing.Size(32, 32)
+        Me.mstGame.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tmiGame, Me.tmiDifficulty})
+        Me.mstGame.Location = New System.Drawing.Point(0, 0)
+        Me.mstGame.Name = "mstGame"
+        Me.mstGame.Padding = New System.Windows.Forms.Padding(3, 1, 0, 1)
+        Me.mstGame.Size = New System.Drawing.Size(944, 24)
+        Me.mstGame.TabIndex = 3
+        Me.mstGame.Text = "cmnuMain"
         '
-        'GameToolStripMenuItem
+        'tmiGame
         '
-        Me.GameToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HomeToolStripMenuItem})
-        Me.GameToolStripMenuItem.Name = "GameToolStripMenuItem"
-        Me.GameToolStripMenuItem.Size = New System.Drawing.Size(50, 20)
-        Me.GameToolStripMenuItem.Text = "Game"
+        Me.tmiGame.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tmiHome})
+        Me.tmiGame.Name = "tmiGame"
+        Me.tmiGame.Size = New System.Drawing.Size(50, 22)
+        Me.tmiGame.Text = "Game"
         '
-        'HomeToolStripMenuItem
+        'tmiHome
         '
-        Me.HomeToolStripMenuItem.Name = "HomeToolStripMenuItem"
-        Me.HomeToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.HomeToolStripMenuItem.Text = "Home"
+        Me.tmiHome.Name = "tmiHome"
+        Me.tmiHome.Size = New System.Drawing.Size(107, 22)
+        Me.tmiHome.Text = "Home"
         '
-        'DifficultyToolStripMenuItem
+        'tmiDifficulty
         '
-        Me.DifficultyToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BeginnerToolStripMenuItem, Me.IntermediateToolStripMenuItem, Me.ExpertToolStripMenuItem})
-        Me.DifficultyToolStripMenuItem.Name = "DifficultyToolStripMenuItem"
-        Me.DifficultyToolStripMenuItem.Size = New System.Drawing.Size(67, 20)
-        Me.DifficultyToolStripMenuItem.Text = "Difficulty"
+        Me.tmiDifficulty.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tmiBeginner, Me.tmiIntermediate, Me.tmiExpert})
+        Me.tmiDifficulty.Name = "tmiDifficulty"
+        Me.tmiDifficulty.Size = New System.Drawing.Size(67, 22)
+        Me.tmiDifficulty.Text = "Difficulty"
+        '
+        'tmiBeginner
+        '
+        Me.tmiBeginner.Name = "tmiBeginner"
+        Me.tmiBeginner.Size = New System.Drawing.Size(141, 22)
+        Me.tmiBeginner.Text = "Beginner"
+        '
+        'tmiIntermediate
+        '
+        Me.tmiIntermediate.Name = "tmiIntermediate"
+        Me.tmiIntermediate.Size = New System.Drawing.Size(141, 22)
+        Me.tmiIntermediate.Text = "Intermediate"
+        '
+        'tmiExpert
+        '
+        Me.tmiExpert.Name = "tmiExpert"
+        Me.tmiExpert.Size = New System.Drawing.Size(141, 22)
+        Me.tmiExpert.Text = "Expert"
         '
         'pnlGameArea
         '
@@ -125,69 +145,42 @@ Partial Class frmGame
         Me.lblTimer.TabIndex = 0
         Me.lblTimer.Text = "000000"
         '
-        'ListBox1
-        '
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Location = New System.Drawing.Point(68, 516)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(802, 329)
-        Me.ListBox1.TabIndex = 6
-        '
         'timPlayer
         '
         Me.timPlayer.Enabled = True
         Me.timPlayer.Interval = 1000
         '
-        'BeginnerToolStripMenuItem
-        '
-        Me.BeginnerToolStripMenuItem.Name = "BeginnerToolStripMenuItem"
-        Me.BeginnerToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.BeginnerToolStripMenuItem.Text = "Beginner"
-        '
-        'IntermediateToolStripMenuItem
-        '
-        Me.IntermediateToolStripMenuItem.Name = "IntermediateToolStripMenuItem"
-        Me.IntermediateToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.IntermediateToolStripMenuItem.Text = "Intermediate"
-        '
-        'ExpertToolStripMenuItem
-        '
-        Me.ExpertToolStripMenuItem.Name = "ExpertToolStripMenuItem"
-        Me.ExpertToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ExpertToolStripMenuItem.Text = "Expert"
-        '
         'frmGame
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(944, 867)
-        Me.Controls.Add(Me.ListBox1)
+        Me.ClientSize = New System.Drawing.Size(944, 501)
         Me.Controls.Add(Me.pnlGameBar)
         Me.Controls.Add(Me.pnlGameArea)
-        Me.Controls.Add(Me.MenuStrip1)
-        Me.MainMenuStrip = Me.MenuStrip1
+        Me.Controls.Add(Me.mstGame)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MainMenuStrip = Me.mstGame
         Me.Name = "frmGame"
         Me.Text = "Minesweeper - Game"
-        Me.MenuStrip1.ResumeLayout(False)
-        Me.MenuStrip1.PerformLayout()
+        Me.mstGame.ResumeLayout(False)
+        Me.mstGame.PerformLayout()
         Me.pnlGameBar.ResumeLayout(False)
         Me.pnlGameBar.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents MenuStrip1 As MenuStrip
-    Friend WithEvents GameToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents HomeToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents DifficultyToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents mstGame As MenuStrip
+    Friend WithEvents tmiGame As ToolStripMenuItem
+    Friend WithEvents tmiHome As ToolStripMenuItem
+    Friend WithEvents tmiDifficulty As ToolStripMenuItem
     Friend WithEvents pnlGameArea As Panel
     Friend WithEvents pnlGameBar As Panel
     Friend WithEvents lblSquaresLeft As Label
     Friend WithEvents lblTimer As Label
     Friend WithEvents lblPlayerName As Label
-    Friend WithEvents ListBox1 As ListBox
     Friend WithEvents timPlayer As Timer
-    Friend WithEvents BeginnerToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents IntermediateToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ExpertToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents tmiBeginner As ToolStripMenuItem
+    Friend WithEvents tmiIntermediate As ToolStripMenuItem
+    Friend WithEvents tmiExpert As ToolStripMenuItem
 End Class
